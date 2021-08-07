@@ -4,12 +4,15 @@
 package com.it.dck.pdf.util;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 
+import com.it.dck.pdf.model.AlturaHeader;
 import com.it.dck.pdf.model.Contenido;
 import com.it.dck.pdf.model.Portada;
 
@@ -24,7 +27,7 @@ import com.it.dck.pdf.model.Portada;
  * @since 06/07/2021
  *
  */
-public interface IUtilPDF {
+public abstract interface IUtilPDF {
 	/**
 	 * Method to create table in pdf file
 	 * @param font fuente del docuemnto
@@ -65,5 +68,25 @@ public interface IUtilPDF {
 	 * @param contenido contenido
 	 */
 	abstract void agregarDatosContenido(PDPageContentStream contentStream, PDPage page, Contenido contenido);
+	
+	/**
+	 * Agrega imagen al documento
+	 * @param document documentoactual
+	 * @param contentStream contenido
+	 * @param imagen imagen a agregar
+	 * @param x posicion en eje x
+	 * @param y posicion en eje y
+	 * @param anchoImagen ancho de imagen
+	 * @param altoImagen alto de imagen
+	 * @throws IOException no se pudo  leer la imagen
+	 */
+	public void agregarImagen(PDDocument document, PDPageContentStream contentStream, InputStream imagen, 
+			float x, float y, float anchoImagen, float altoImagen) throws IOException;
+	/**
+	 * 
+	 * @param h enum con valores validos
+	 * @return altura del componente
+	 */
+	public float altura(AlturaHeader h);
 	
 }

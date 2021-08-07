@@ -24,5 +24,7 @@ HTTPS
 
 ##Licencia	
 Proyecto Codigo abierto
-<br>
-Desarrollado por Ivan Basilio Ramirez
+<br><br>
+Desarrollado por 
+<br><br>
+Ivan Basilio Ramirez

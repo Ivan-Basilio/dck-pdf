@@ -1,12 +1,17 @@
 package com.it.dck.pdf.util;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
+import com.it.dck.pdf.model.AlturaHeader;
 import com.it.dck.pdf.model.Contenido;
 import com.it.dck.pdf.model.Portada;
 
@@ -133,5 +138,34 @@ public class UtilPDF implements IUtilPDF {
 	 */
 	public void agregarDatosContenido(PDPageContentStream contentStream, PDPage page, Contenido contenido) {
 		
+	}
+	
+	/**
+	 * Agregar imagen a documento
+	 */
+	public void agregarImagen(PDDocument document, PDPageContentStream contentStream, InputStream imagen, 
+									float x, float y, float anchoImagen, float altoImagen) throws IOException {
+		byte[] bytes = IOUtils.toByteArray(imagen);
+		
+		PDImageXObject image 
+		  = PDImageXObject.createFromByteArray(document, bytes, null);
+
+		contentStream.drawImage(image, x,y, anchoImagen , altoImagen);
+		
+	}
+	public float altura(AlturaHeader h) {
+		float rep;
+		if(h == AlturaHeader.H1) {
+			rep = AlturaHeader.H1.getAltura();	
+		} else if(h == AlturaHeader.H2){
+			rep = AlturaHeader.H2.getAltura();
+		} else if(h == AlturaHeader.H3) {
+			rep = AlturaHeader.H3.getAltura();	
+		} else if(h == AlturaHeader.H4) {
+			rep = AlturaHeader.H4.getAltura();	
+		} else {
+			rep = AlturaHeader.H5.getAltura();
+		}
+		return rep;
 	}
 }

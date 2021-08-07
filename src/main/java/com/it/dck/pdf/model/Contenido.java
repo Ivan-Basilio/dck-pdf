@@ -8,7 +8,7 @@ import java.util.List;
  * @version 0.0.1
  * @since 06/08/2021
  */
-public class Contenido {
+public class Contenido extends Header {
 
 	private String titulo;
 	private List<String> subtitulos;
